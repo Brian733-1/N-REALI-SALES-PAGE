@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Natureza da Realidade — Projeto Resonance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #03060F;
+    --navy: #08111F;
+    --mid: #0D1E35;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --gold-dim: #7A6230;
+    --star: #F0EFEA;
+    --dim: #8899BB;
+    --accent: #1E3A5F;
+  }
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--deep);
+    color: var(--star);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+ 
+  /* ── STAR CANVAS ── */
+  #stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+ 
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+ 
+  /* ── LAYOUT ── */
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+ 
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+  }
+ 
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 1px; height: 80px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+ 
+  .eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+ 
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 9vw, 88px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    color: var(--star);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+ 
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+ 
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dim);
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+ 
+  .gold-line {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 56px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+ 
+  .hero-lead {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--gold-light);
+    max-width: 560px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.1s forwards;
+  }
+ 
+  /* ── SECTIONS ── */
+  section {
+    padding: 100px 0;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
+    margin: 0 auto;
+  }
+ 
+  /* ── PRESENCE BLOCK ── */
+  .presence {
+    text-align: center;
+  }
+ 
+  .presence-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+ 
+  .presence h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 40px;
+  }
+ 
+  .presence h2 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+ 
+  .presence p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--dim);
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+ 
+  .presence p strong {
+    color: var(--star);
+    font-weight: 400;
+  }
+ 
+  /* ── QUOTE BLOCK ── */
+  .quote-block {
+    background: linear-gradient(135deg, rgba(14,28,50,0.6), rgba(8,17,31,0.8));
+    border: 1px solid rgba(201,168,76,0.15);
+    border-left: 3px solid var(--gold);
+    padding: 40px 48px;
+    margin: 60px 0;
+    position: relative;
+  }
+ 
+  .quote-block::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    color: var(--gold);
+    opacity: 0.12;
+    position: absolute;
+    top: -20px; left: 20px;
+    line-height: 1;
+  }
+ 
+  .quote-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--gold-light);
+    position: relative;
+    z-index: 1;
+  }
+ 
+  /* ── MODULES ── */
+  .modules-section {
+    text-align: center;
+  }
+ 
+  .modules-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+ 
+  .modules-section .sub {
+    font-size: 15px;
+    color: var(--dim);
+    margin-bottom: 64px;
+    letter-spacing: 0.05em;
+  }
+ 
+  .modules-grid {
+    display: grid;
+    gap: 2px;
+  }
+ 
+  .module-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 0;
+    text-align: left;
+    background: rgba(13,30,53,0.4);
+    border: 1px solid rgba(201,168,76,0.08);
+    transition: border-color 0.3s, background 0.3s;
+    cursor: default;
+  }
+ 
+  .module-item:hover {
+    border-color: rgba(201,168,76,0.25);
+    background: rgba(13,30,53,0.7);
+  }
+ 
+  .module-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201,168,76,0.06);
+    border-right: 1px solid rgba(201,168,76,0.1);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold-dim);
+    font-weight: 300;
+    padding: 24px 0;
+  }
+ 
+  .module-content {
+    padding: 20px 24px;
+  }
+ 
+  .module-content h3 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+ 
+  .module-content p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--dim);
+  }
+ 
+  /* ── TRANSFORMATION ── */
+  .transform-section {
+    text-align: center;
+  }
+ 
+  .transform-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 300;
+    margin-bottom: 56px;
+  }
+ 
+  .transform-section h2 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+ 
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+ 
+  .pillar {
+    padding: 32px 20px;
+    border: 1px solid rgba(201,168,76,0.12);
+    background: rgba(8,17,31,0.5);
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+ 
+  .pillar:hover { border-color: rgba(201,168,76,0.35); }
+ 
+  .pillar-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+ 
+  .pillar h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+  }
+ 
+  .pillar p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--dim);
+  }
+ 
+  /* ── ABOUT ── */
+  .about-section {
+    text-align: center;
+  }
+ 
+  .about-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 36px;
+  }
+ 
+  .about-section p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--dim);
+    max-width: 580px;
+    margin: 0 auto 20px;
+  }
+ 
+  .about-section p strong {
+    color: var(--star);
+    font-weight: 400;
+  }
+ 
+  /* ── OFFER ── */
+  .offer-section {
+    text-align: center;
+  }
+ 
+  .offer-box {
+    background: linear-gradient(160deg, rgba(14,28,50,0.9), rgba(5,10,20,0.95));
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 64px 48px;
+    position: relative;
+    overflow: hidden;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+ 
+  .offer-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+ 
+  .offer-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+ 
+  .offer-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+ 
+  .offer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--star);
+    margin-bottom: 8px;
+  }
+ 
+  .offer-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--dim);
+    margin-bottom: 40px;
+  }
+ 
+  .price-row {
+    margin-bottom: 40px;
+  }
+ 
+  .price-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+ 
+  .price-value sup {
+    font-size: 28px;
+    vertical-align: super;
+    color: var(--gold);
+  }
+ 
+  .price-note {
+    font-size: 13px;
+    color: var(--dim);
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+  }
+ 
+  .offer-includes {
+    list-style: none;
+    margin-bottom: 40px;
+    text-align: left;
+  }
+ 
+  .offer-includes li {
+    font-size: 14px;
+    color: var(--dim);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+ 
+  .offer-includes li::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+ 
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 20px 32px;
+    background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+    color: var(--deep);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .cta-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+ 
+  .cta-btn::after {
+    content: ' →';
+  }
+ 
+  .secure-note {
+    font-size: 12px;
+    color: var(--dim);
+    margin-top: 20px;
+    opacity: 0.7;
+  }
+ 
+  /* ── FINAL ── */
+  .final-section {
+    text-align: center;
+    padding: 120px 0 80px;
+  }
+ 
+  .final-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 32px;
+  }
+ 
+  .final-section h2 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+ 
+  .final-section p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--dim);
+    max-width: 520px;
+    margin: 0 auto 48px;
+  }
+ 
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 40px 24px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  footer p {
+    font-size: 12px;
+    color: var(--dim);
+    opacity: 0.6;
+    margin-bottom: 8px;
+  }
+ 
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+  }
+ 
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+ 
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+ 
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+ 
+  /* ── GLOW ── */
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+    opacity: 0.08;
+  }
+ 
+  .glow-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #1a4a8a, transparent);
+    top: -100px; left: 50%; transform: translateX(-50%);
+  }
+ 
+  .glow-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, #C9A84C, transparent);
+    top: 40%; right: -150px;
+    opacity: 0.05;
+  }
+ 
+  @media (max-width: 600px) {
+    .offer-box { padding: 40px 24px; }
+    .quote-block { padding: 28px 24px; }
+    .pillars { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+ 
+<canvas id="stars"></canvas>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="wrap">
+    <h1 class="hero-title" style="font-size: clamp(38px, 6.5vw, 72px);">Alcance o Entendimento<br>de um <em>Sábio Mago<br>da Realidade</em></h1>
+    <p class="hero-subtitle">Essas informações não aparecem duas vezes.</p>
+    <div class="gold-line"></div>
+    <p class="hero-lead">
+      O estado de presença não é um destino. É a condição natural de quem compreendeu o que é o universo, o que é o ser humano e o que significa estar vivo agora.
+    </p>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- PRESENCE -->
+<section class="presence">
+  <div class="wrap">
+    <p class="presence-label reveal">O problema</p>
+    <h2 class="reveal">Poucas pessoas vivem de fato.<br>A maioria existe em <em>piloto automático.</em></h2>
+    <p class="reveal">
+      Não por falta de inteligência. Mas por falta de entendimento. <strong>Entendimento do que é essa realidade em que vivemos, do que é o corpo que habitamos, de quem somos por baixo de tudo que nos ensinaram a ser.</strong>
+    </p>
+    <p class="reveal">
+      Quando esse entendimento chega, algo muda de forma permanente. Não é motivação. Não é técnica. É clareza. E clareza gera presença.
+    </p>
+ 
+    <div class="quote-block reveal">
+      <p>O conhecimento é o único bem que ninguém pode tirar de você. Ao alcançar o entendimento, você carrega uma leveza que não depende de circunstância alguma.</p>
+    </div>
+ 
+    <p class="reveal">
+      Este material foi escrito por alguém que não carrega títulos acadêmicos, mas que carrega anos de busca honesta. Uma tentativa de encapsular em palavras <strong>a experiência de compreender a natureza da realidade</strong>, desde os ensinamentos dos nossos ancestrais até o que a física quântica, a neurociência e a psicologia mais profunda já documentaram.
+    </p>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- MODULES -->
+<section class="modules-section">
+  <div class="wrap">
+    <h2 class="reveal">Sete camadas de <em>entendimento</em></h2>
+    <p class="sub reveal">Cada módulo é uma dimensão da mesma verdade</p>
+ 
+    <div class="modules-grid">
+      <div class="module-item reveal">
+        <div class="module-num">I</div>
+        <div class="module-content">
+          <h3>O Universo que Habitamos</h3>
+          <p>Do Big Bang ao emaranhamento quântico. Por que somos cósmicos antes de sermos humanos, e o que isso significa para a forma como vivemos.</p>
+        </div>
+      </div>
+      <div class="module-item reveal">
+        <div class="module-num">II</div>
+        <div class="module-content">
+          <h3>Estrutura Quântica</h3>
+          <p>O observador altera a realidade. Nada é sólido. A realidade existe em possibilidades. E você é cocriador disso, quer saiba ou não.</p>
+        </div>
+      </div>
+      <div class="module-item reveal">
+        <div class="module-num">III</div>
+        <div class="module-content">
+          <h3>Estrutura do Ser Humano</h3>
+          <p>O ego, o Self, o coração como campo eletromagnético. A briga interna que Paulo descreveu e Jung explicou. Quem você é de fato.</p>
+        </div>
+      </div>
+      <div class="module-item reveal">
+        <div class="module-num">IV</div>
+        <div class="module-content">
+          <h3>Espiritualidade</h3>
+          <p>Além das religiões. O campo vibrante que coexiste com o físico. O medo como impeditivo. O desapego como portal para a presença.</p>
+        </div>
+      </div>
+      <div class="module-item reveal">
+        <div class="module-num">V</div>
+        <div class="module-content">
+          <h3>Psicologia Junguiana</h3>
+          <p>Sombras, projeções, individuação. O processo de se tornar quem você de fato é, dissolvendo o que apenas acreditava ser.</p>
+        </div>
+      </div>
+      <div class="module-item reveal">
+        <div class="module-num">VI</div>
+        <div class="module-content">
+          <h3>Identidade e Propósito</h3>
+          <p>Quando crescer deixa de ser o objetivo e evoluir passa a ser o caminho. O propósito como consequência natural da clareza interna.</p>
+        </div>
+      </div>
+      <div class="module-item reveal">
+        <div class="module-num">VII</div>
+        <div class="module-content">
+          <h3>Universo Holográfico</h3>
+          <p>A teoria holográfica, a relatividade, a comunicação não local de Einstein. E a possibilidade de que essa experiência seja muito mais do que parece.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- TRANSFORMATION -->
+<section class="transform-section">
+  <div class="wrap">
+    <h2 class="reveal">O que muda em quem <em>compreende</em></h2>
+ 
+    <div class="pillars">
+      <div class="pillar reveal">
+        <span class="pillar-icon">◈</span>
+        <h4>Leveza</h4>
+        <p>O sofrimento por coisas banais deixa de fazer sentido quando se entende a natureza do que é real.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-icon">◈</span>
+        <h4>Presença</h4>
+        <p>Viver no momento não é técnica de meditação. É o estado natural de quem entendeu o que é o tempo.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-icon">◈</span>
+        <h4>Magnetismo</h4>
+        <p>Quem vive em coerência interna irradia algo que não se explica, mas que todos ao redor percebem.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-icon">◈</span>
+        <h4>Desapego</h4>
+        <p>Não indiferença. A liberdade de quem sabe que o real não pode ser tirado por circunstância alguma.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-icon">◈</span>
+        <h4>Propósito</h4>
+        <p>Clareza sobre quem você é naturalmente revela o que você veio fazer. Sem esforço de descoberta.</p>
+      </div>
+      <div class="pillar reveal">
+        <span class="pillar-icon">◈</span>
+        <h4>Harmonia</h4>
+        <p>Com a natureza, com o próximo, consigo mesmo. A consequência de viver alinhado com o que é verdadeiro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="wrap">
+    <h2 class="reveal">"Não sou escritor.<br>Sou alguém que não parou de buscar."</h2>
+    <p class="reveal">
+      Este material não nasce de um currículo. Nasce de anos de sofrimento que geraram perguntas, e de perguntas que geraram busca. Uma busca honesta por artigos científicos, física quântica, neurociência, Jung, espiritualidade ancestral e comunicação de seres mais avançados.
+    </p>
+    <p class="reveal">
+      <strong>O resultado é uma ponte.</strong> Entre o que a ciência documenta e o que a sabedoria milenar sempre soube. Escrita numa linguagem que qualquer pessoa com mente aberta consegue absorver.
+    </p>
+    <p class="reveal">
+      Não há verdades absolutas aqui. Há perguntas que valem mais do que muitas respostas.
+    </p>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- OFFER -->
+<section class="offer-section">
+  <div class="wrap">
+    <div class="offer-box reveal">
+      <p class="offer-label">Acesso completo</p>
+      <h3 class="offer-title">A Natureza da Realidade</h3>
+      <p class="offer-subtitle">7 Módulos · Ebook em PDF</p>
+ 
+      <div class="price-row">
+        <div class="price-value"><sup>R$</sup>89<sup>,90</sup></div>
+        <p class="price-note">pagamento único · acesso imediato</p>
+      </div>
+ 
+      <ul class="offer-includes">
+        <li>7 módulos completos: do universo ao propósito individual</li>
+        <li>Física quântica, neurociência e psicologia junguiana integradas</li>
+        <li>Espiritualidade universal sem dogma religioso</li>
+        <li>Linguagem acessível, profundidade real</li>
+        <li>Download imediato em PDF · leitura em qualquer dispositivo</li>
+      </ul>
+ 
+      <a href="#LINK_CHECKOUT_PERFECTPAY" class="cta-btn">Quero o entendimento</a>
+      <p class="secure-note">🔒 Pagamento seguro · Entrega imediata por e-mail</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- FINAL -->
+<section class="final-section">
+  <div class="wrap">
+    <h2 class="reveal">O entendimento é o único bem<br>que ninguém pode <em>te tirar.</em></h2>
+    <p class="reveal">
+      Casa, carro, dinheiro, reconhecimento. Tudo isso pode mudar. O que você compreende, o que você genuinamente entende sobre a natureza da realidade, isso fica. Para sempre. E muda a forma como você vive cada dia a partir de agora.
+    </p>
+    <a href="#LINK_CHECKOUT_PERFECTPAY" class="cta-btn reveal" style="max-width: 400px; margin: 0 auto;">Quero o entendimento</a>
+  </div>
+</section>
+ 
+<footer>
+  <p>Projeto Resonance · Todos os direitos reservados</p>
+  <a href="mailto:projetoresonance@gmail.com">projetoresonance@gmail.com</a>
+</footer>
+ 
+<!-- STARS SCRIPT -->
+<script>
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+ 
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = document.body.scrollHeight;
+}
+ 
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const rng = mulberry32(42);
+  for (let i = 0; i < 320; i++) {
+    const x = rng() * canvas.width;
+    const y = rng() * canvas.height;
+    const r = rng() * 1.2 + 0.2;
+    const a = rng() * 0.7 + 0.15;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(200, 220, 255, ${a})`;
+    ctx.fill();
+  }
+}
+ 
+function mulberry32(seed) {
+  return function() {
+    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+ 
+resize();
+drawStars();
+window.addEventListener('resize', () => { resize(); drawStars(); });
+ 
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+ 
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
