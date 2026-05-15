@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — A Natureza da Realidade</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { min-height: 100%; }
+ 
+body {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  background: #080b10;
+  overflow-x: hidden;
+  position: relative;
+}
+ 
+/* ── STAR CANVAS ── */
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+ 
+/* ── SAGE SILHOUETTES ── */
+.portraits {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+ 
+/* ── VIGNETTE over background ── */
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(to right,
+      rgba(5,8,14,0.82) 0%,
+      rgba(5,8,14,0.18) 25%,
+      rgba(5,8,14,0.18) 75%,
+      rgba(5,8,14,0.82) 100%),
+    linear-gradient(to bottom,
+      rgba(5,8,14,0.55) 0%,
+      transparent 18%,
+      transparent 80%,
+      rgba(5,8,14,0.75) 100%);
+}
+ 
+/* ── LAYOUT ── */
+.page {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+}
+ 
+/* LEFT */
+.left-panel {
+  width: 44%;
+  padding: 64px 48px 64px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(201,168,76,0.12);
+  position: relative;
+}
+ 
+.left-panel::after {
+  content: '';
+  position: absolute;
+  right: -1px; top: 12%; bottom: 12%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3), transparent);
+}
+ 
+/* RIGHT */
+.right-panel {
+  width: 56%;
+  padding: 64px 60px 64px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(4,7,12,0.45);
+}
+ 
+/* ── LEFT CONTENT ── */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.ey-line { height: 1px; width: 36px; background: linear-gradient(to right, #C9A84C, transparent); }
+.ey-text { font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase; color: #C9A84C; }
+ 
+.product-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(30px, 3vw, 48px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #FFFFFF;
+  margin-bottom: 6px;
+}
+.product-title em { font-style: italic; color: #E8D5A3; }
+ 
+.product-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: #8899BB;
+  margin-bottom: 30px;
+}
+ 
+.gold-rule {
+  width: 44px; height: 1px;
+  background: linear-gradient(to right, #C9A84C, transparent);
+  margin-bottom: 28px;
+}
+ 
+.modules { list-style: none; margin-bottom: 32px; }
+.modules li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 13.5px;
+  color: #C8D8EE;
+  transition: color 0.2s;
+}
+.modules li:hover { color: #ffffff; }
+.modules li:last-child { border-bottom: none; }
+.mod-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: #C9A84C;
+  min-width: 20px;
+  opacity: 0.8;
+}
+ 
+/* Price box */
+.price-box {
+  background: rgba(8,12,20,0.75);
+  border: 1px solid rgba(201,168,76,0.22);
+  border-top: 2px solid rgba(201,168,76,0.55);
+  padding: 22px 26px;
+}
+.price-lbl { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #8899BB; margin-bottom: 6px; }
+.price-val { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: #FFFFFF; line-height: 1; }
+.price-val sup { font-size: 20px; color: #C9A84C; vertical-align: super; }
+.price-desc { font-size: 11.5px; color: #6a7f99; margin-top: 6px; letter-spacing: 0.04em; }
+.secure {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 12px; color: #6a7f99;
+}
+ 
+/* ── RIGHT CONTENT ── */
+.form-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 300;
+  color: #FFFFFF;
+  margin-bottom: 4px;
+}
+.form-desc { font-size: 13px; color: #6a7f99; margin-bottom: 28px; }
+ 
+/* Fields */
+.field { margin-bottom: 16px; }
+.field label {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8899BB;
+  margin-bottom: 7px;
+}
+.field input {
+  width: 100%;
+  background: rgba(8,14,24,0.8);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+  padding: 13px 15px;
+  color: #FFFFFF;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+  caret-color: #C9A84C;
+}
+.field input::placeholder { color: #2e3e52; }
+.field input:focus {
+  border-color: rgba(201,168,76,0.45);
+  background: rgba(8,14,24,0.95);
+}
+ 
+/* Payment */
+.pay-label { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #8899BB; margin-bottom: 10px; }
+.pay-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+.pay-tab {
+  padding: 13px 6px;
+  background: rgba(8,14,24,0.7);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 2px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s;
+  color: #5a6e87;
+  font-size: 12px;
+  font-family: 'Outfit', sans-serif;
+  user-select: none;
+}
+.pay-tab:hover { border-color: rgba(201,168,76,0.3); color: #C8D8EE; }
+.pay-tab.active {
+  border-color: rgba(201,168,76,0.55);
+  background: rgba(12,20,34,0.9);
+  color: #FFFFFF;
+}
+.pay-tab .ticon { font-size: 18px; display: block; margin-bottom: 5px; }
+ 
+/* Extra blocks */
+.extra { display: none; }
+.extra.show { display: block; }
+ 
+.pix-info {
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-left: 3px solid rgba(201,168,76,0.45);
+  padding: 13px 16px;
+  margin-bottom: 16px;
+  font-size: 12.5px;
+  color: #C8D8EE;
+  line-height: 1.7;
+  display: none;
+}
+.pix-info.show { display: block; }
+ 
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+ 
+/* Error */
+.err { font-size: 12px; color: #e07a5f; margin-bottom: 8px; display: none; }
+.err.show { display: block; }
+ 
+/* CTA */
+.cta {
+  width: 100%;
+  padding: 17px 32px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, #7A6230, #C9A84C 50%, #8a6828);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  border: none;
+  border-radius: 2px;
+  color: #080b10;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-position 0.4s, transform 0.2s, opacity 0.2s;
+}
+.cta:hover { background-position: 0% 0; transform: translateY(-1px); }
+.cta:active { transform: translateY(0); }
+.cta.loading { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
+ 
+.cta-note { text-align: center; font-size: 11.5px; color: #4a5e72; letter-spacing: 0.04em; }
+ 
+/* Footer quote */
+.foot-quote {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(5,8,14,0.97) 60%, transparent);
+  text-align: center; pointer-events: none;
+}
+.foot-quote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; font-style: italic;
+  color: rgba(201,168,76,0.25); letter-spacing: 0.08em;
+}
+ 
+/* Mobile */
+@media (max-width: 800px) {
+  .page { flex-direction: column; }
+  .left-panel { width: 100%; padding: 50px 26px 34px; border-right: none; border-bottom: 1px solid rgba(201,168,76,0.08); }
+  .left-panel::after { display: none; }
+  .right-panel { width: 100%; padding: 34px 26px 80px; }
+  .two-col { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+ 
+<!-- STARFIELD CANVAS -->
+<canvas id="starfield"></canvas>
+ 
+<!-- SAGE SILHOUETTES -->
+<div class="portraits">
+  <!-- Gandhi left -->
+  <svg style="position:absolute;left:0;top:0;width:20%;height:100%;opacity:0.08;" viewBox="0 0 200 700" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <filter id="sg"><feGaussianBlur stdDeviation="2"/></filter>
+      <linearGradient id="gg" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#D4AF60" stop-opacity="1"/>
+        <stop offset="70%" stop-color="#D4AF60" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#D4AF60" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g filter="url(#sg)" fill="url(#gg)">
+      <ellipse cx="100" cy="110" rx="36" ry="42"/>
+      <ellipse cx="86" cy="118" rx="11" ry="8" fill="none" stroke="#D4AF60" stroke-width="2.5" opacity="0.75"/>
+      <ellipse cx="114" cy="118" rx="11" ry="8" fill="none" stroke="#D4AF60" stroke-width="2.5" opacity="0.75"/>
+      <line x1="97" y1="118" x2="103" y2="118" stroke="#D4AF60" stroke-width="2" opacity="0.65"/>
+      <rect x="94" y="150" width="12" height="18" rx="3"/>
+      <path d="M55 170 Q100 160 145 170 L138 400 Q100 412 62 400 Z"/>
+      <path d="M55 205 Q28 265 18 330" stroke="#D4AF60" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M145 205 Q172 265 182 330" stroke="#D4AF60" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <line x1="22" y1="280" x2="44" y2="590" stroke="#D4AF60" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+      <path d="M80 400 L72 590" stroke="#D4AF60" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M120 400 L128 590" stroke="#D4AF60" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <ellipse cx="70" cy="596" rx="15" ry="5"/>
+      <ellipse cx="130" cy="596" rx="15" ry="5"/>
+    </g>
+  </svg>
+ 
+  <!-- Jung right -->
+  <svg style="position:absolute;right:0;top:0;width:20%;height:100%;opacity:0.08;" viewBox="0 0 200 700" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <filter id="sj"><feGaussianBlur stdDeviation="2"/></filter>
+      <linearGradient id="jg" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#D4AF60" stop-opacity="1"/>
+        <stop offset="70%" stop-color="#D4AF60" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#D4AF60" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g filter="url(#sj)" fill="url(#jg)">
+      <ellipse cx="100" cy="108" rx="42" ry="46"/>
+      <ellipse cx="85" cy="116" rx="13" ry="10" fill="none" stroke="#D4AF60" stroke-width="2.5" opacity="0.75"/>
+      <ellipse cx="115" cy="116" rx="13" ry="10" fill="none" stroke="#D4AF60" stroke-width="2.5" opacity="0.75"/>
+      <line x1="98" y1="116" x2="102" y2="116" stroke="#D4AF60" stroke-width="2" opacity="0.65"/>
+      <path d="M88 138 Q100 146 112 138" stroke="#D4AF60" stroke-width="2.5" fill="none" opacity="0.4"/>
+      <rect x="93" y="153" width="14" height="20" rx="3"/>
+      <path d="M35 178 Q100 162 165 178 L156 415 Q100 430 44 415 Z"/>
+      <path d="M35 195 L18 355" stroke="#D4AF60" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <path d="M165 195 L182 355" stroke="#D4AF60" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <ellipse cx="16" cy="363" rx="11" ry="15"/>
+      <ellipse cx="184" cy="363" rx="11" ry="15"/>
+      <rect x="176" y="350" width="24" height="30" rx="2" opacity="0.5"/>
+      <path d="M75 415 L65 595" stroke="#D4AF60" stroke-width="15" fill="none" stroke-linecap="round"/>
+      <path d="M125 415 L135 595" stroke="#D4AF60" stroke-width="15" fill="none" stroke-linecap="round"/>
+      <ellipse cx="63" cy="600" rx="19" ry="6"/>
+      <ellipse cx="137" cy="600" rx="19" ry="6"/>
+    </g>
+  </svg>
+ 
+  <!-- Buddha top center -->
+  <svg style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:12%;opacity:0.05;" viewBox="0 0 160 280" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <filter id="sb"><feGaussianBlur stdDeviation="4"/></filter>
+      <linearGradient id="bdg" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#E8D5A3" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#E8D5A3" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g filter="url(#sb)" fill="url(#bdg)">
+      <ellipse cx="80" cy="28" rx="16" ry="20"/>
+      <ellipse cx="80" cy="62" rx="38" ry="42"/>
+      <path d="M8 112 Q80 96 152 112 L165 268 Q80 280 -5 268 Z"/>
+      <ellipse cx="80" cy="270" rx="72" ry="14"/>
+      <ellipse cx="80" cy="185" rx="26" ry="16" opacity="0.6"/>
+    </g>
+  </svg>
+</div>
+ 
+<div class="vignette"></div>
+ 
+<!-- PAGE -->
+<div class="page">
+ 
+  <!-- LEFT -->
+  <div class="left-panel">
+    <div class="eyebrow">
+      <span class="ey-line"></span>
+      <span class="ey-text">Acesso completo</span>
+    </div>
+ 
+    <h1 class="product-title">A Natureza<br>da <em>Realidade</em></h1>
+    <p class="product-sub">7 Módulos ao Entendimento</p>
+    <div class="gold-rule"></div>
+ 
+    <ul class="modules">
+      <li><span class="mod-n">I</span> O Universo que Habitamos</li>
+      <li><span class="mod-n">II</span> Estrutura Quântica (Micro)</li>
+      <li><span class="mod-n">III</span> Estrutura do Ser Humano Complexo</li>
+      <li><span class="mod-n">IV</span> Espiritualidade</li>
+      <li><span class="mod-n">V</span> Psicologia Junguiana</li>
+      <li><span class="mod-n">VI</span> Identidade e Propósito</li>
+      <li><span class="mod-n">VII</span> Universo Holográfico</li>
+    </ul>
+ 
+    <div class="price-box">
+      <p class="price-lbl">Investimento único</p>
+      <div class="price-val"><sup>R$</sup>89<sup>,90</sup></div>
+      <p class="price-desc">pagamento único · entrega imediata por e-mail</p>
+      <div class="secure">
+        <span>🔒</span>
+        <span>Ambiente seguro · Processado pela PerfectPay</span>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- RIGHT -->
+  <div class="right-panel">
+    <h2 class="form-title">Complete seu acesso</h2>
+    <p class="form-desc">Preencha os dados abaixo para prosseguir com o pagamento</p>
+ 
+    <div class="field">
+      <label>Nome completo</label>
+      <input type="text" id="nome" placeholder="Seu nome completo" autocomplete="name">
+    </div>
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" id="email" placeholder="seu@email.com" autocomplete="email">
+    </div>
+    <div class="field">
+      <label>Telefone</label>
+      <input type="tel" id="tel" placeholder="(11) 99999-9999" oninput="maskTel(this)">
+    </div>
+ 
+    <p class="pay-label">Forma de pagamento</p>
+    <div class="pay-tabs">
+      <div class="pay-tab active" onclick="selectPay('pix',this)">
+        <span class="ticon">⬡</span>PIX
+      </div>
+      <div class="pay-tab" onclick="selectPay('cartao',this)">
+        <span class="ticon">▭</span>Cartão
+      </div>
+      <div class="pay-tab" onclick="selectPay('boleto',this)">
+        <span class="ticon">☰</span>Boleto
+      </div>
+    </div>
+ 
+    <div class="pix-info show" id="pix-info">
+      Após confirmar, você será redirecionado para o ambiente seguro da PerfectPay onde o QR Code PIX será gerado instantaneamente.
+    </div>
+ 
+    <div class="field extra show" id="cpf-block">
+      <label>CPF</label>
+      <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)">
+    </div>
+ 
+    <div class="extra" id="card-block">
+      <div class="field">
+        <label>Número do cartão</label>
+        <input type="text" id="cardnum" placeholder="0000 0000 0000 0000" maxlength="19" oninput="maskCard(this)">
+      </div>
+      <div class="two-col">
+        <div class="field">
+          <label>Validade</label>
+          <input type="text" id="cardexp" placeholder="MM/AA" maxlength="5" oninput="maskExp(this)">
+        </div>
+        <div class="field">
+          <label>CVV</label>
+          <input type="text" id="cardcvv" placeholder="123" maxlength="4">
+        </div>
+      </div>
+      <div class="field">
+        <label>Nome no cartão</label>
+        <input type="text" id="cardname" placeholder="Como aparece no cartão">
+      </div>
+    </div>
+ 
+    <div class="err" id="err"></div>
+ 
+    <button class="cta" id="cta-btn" onclick="handleSubmit()">
+      Garantir meu acesso →
+    </button>
+    <p class="cta-note">🔒 &nbsp;Pagamento 100% seguro · Dados criptografados</p>
+  </div>
+</div>
+ 
+<div class="foot-quote">
+  <p>"O conhecimento é o único bem que ninguém pode tirar de você."</p>
+</div>
+ 
+<script>
+// ── STARFIELD ──
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+ 
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
+}
+ 
+function rng(seed) {
+  // simple deterministic rng
+  return function() {
+    seed = (seed * 16807 + 0) % 2147483647;
+    return (seed - 1) / 2147483646;
+  };
+}
+ 
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const rand = rng(1337);
+ 
+  // Deep blue-black background
+  ctx.fillStyle = '#080b10';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+ 
+  // Subtle golden nebula glow
+  const grd = ctx.createRadialGradient(
+    canvas.width * 0.5, canvas.height * 0.45, 0,
+    canvas.width * 0.5, canvas.height * 0.45, canvas.width * 0.55
+  );
+  grd.addColorStop(0, 'rgba(180,130,40,0.06)');
+  grd.addColorStop(0.5, 'rgba(100,80,20,0.03)');
+  grd.addColorStop(1, 'transparent');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+ 
+  // Side glows (where sages stand)
+  const glowL = ctx.createRadialGradient(0, canvas.height * 0.4, 0, 0, canvas.height * 0.4, canvas.width * 0.22);
+  glowL.addColorStop(0, 'rgba(180,130,40,0.07)');
+  glowL.addColorStop(1, 'transparent');
+  ctx.fillStyle = glowL;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+ 
+  const glowR = ctx.createRadialGradient(canvas.width, canvas.height * 0.4, 0, canvas.width, canvas.height * 0.4, canvas.width * 0.22);
+  glowR.addColorStop(0, 'rgba(180,130,40,0.07)');
+  glowR.addColorStop(1, 'transparent');
+  ctx.fillStyle = glowR;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+ 
+  // Stars — mostly white/blue-white, few golden
+  for (let i = 0; i < 280; i++) {
+    const x = rand() * canvas.width;
+    const y = rand() * canvas.height;
+    const r = rand() * 1.3 + 0.2;
+    const a = rand() * 0.7 + 0.15;
+    const golden = rand() < 0.12; // 12% golden stars
+    if (golden) {
+      ctx.fillStyle = `rgba(201,168,76,${a * 0.8})`;
+    } else {
+      ctx.fillStyle = `rgba(${200 + Math.floor(rand()*55)}, ${210 + Math.floor(rand()*45)}, 255, ${a})`;
+    }
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+ 
+  // Constellation lines — subtle
+  const pts = [
+    [0.08, 0.12], [0.14, 0.20], [0.10, 0.30], [0.16, 0.38],
+  ];
+  ctx.strokeStyle = 'rgba(201,168,76,0.1)';
+  ctx.lineWidth = 0.4;
+  for (let i = 0; i < pts.length - 1; i++) {
+    ctx.beginPath();
+    ctx.moveTo(pts[i][0] * canvas.width, pts[i][1] * canvas.height);
+    ctx.lineTo(pts[i+1][0] * canvas.width, pts[i+1][1] * canvas.height);
+    ctx.stroke();
+  }
+  const pts2 = [
+    [0.86, 0.10], [0.92, 0.18], [0.88, 0.28], [0.94, 0.35],
+  ];
+  for (let i = 0; i < pts2.length - 1; i++) {
+    ctx.beginPath();
+    ctx.moveTo(pts2[i][0] * canvas.width, pts2[i][1] * canvas.height);
+    ctx.lineTo(pts2[i+1][0] * canvas.width, pts2[i+1][1] * canvas.height);
+    ctx.stroke();
+  }
+}
+ 
+resize(); drawStars();
+window.addEventListener('resize', () => { resize(); drawStars(); });
+ 
+// ── PAYMENT ──
+let payMethod = 'pix';
+ 
+const LINKS = {
+  pix:    'https://go.perfectpay.com.br/PPU38CQC17R',
+  boleto: 'https://go.perfectpay.com.br/PPU38CQC17R',
+  cartao: 'https://go.perfectpay.com.br/PPU38CQC17Q'
+};
+ 
+function selectPay(method, el) {
+  payMethod = method;
+  document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('cpf-block').classList.remove('show');
+  document.getElementById('card-block').classList.remove('show');
+  document.getElementById('pix-info').classList.remove('show');
+  if (method === 'pix') {
+    document.getElementById('cpf-block').classList.add('show');
+    document.getElementById('pix-info').classList.add('show');
+  } else if (method === 'boleto') {
+    document.getElementById('cpf-block').classList.add('show');
+  } else {
+    document.getElementById('card-block').classList.add('show');
+  }
+}
+ 
+function handleSubmit() {
+  const nome  = document.getElementById('nome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const tel   = document.getElementById('tel').value.trim();
+  const err   = document.getElementById('err');
+  const btn   = document.getElementById('cta-btn');
+ 
+  if (!nome || !email || !tel) {
+    err.classList.add('show');
+    err.textContent = 'Por favor, preencha nome, e-mail e telefone.';
+    return;
+  }
+  if (!email.includes('@') || !email.includes('.')) {
+    err.classList.add('show');
+    err.textContent = 'Por favor, insira um e-mail válido.';
+    return;
+  }
+ 
+  err.classList.remove('show');
+  btn.classList.add('loading');
+  btn.textContent = 'Redirecionando...';
+ 
+  const params = new URLSearchParams({ name: nome, email, phone: tel.replace(/\D/g,'') });
+  setTimeout(() => { window.location.href = LINKS[payMethod] + '?' + params.toString(); }, 700);
+}
+ 
+function maskTel(el) {
+  let v = el.value.replace(/\D/g,'').slice(0,11);
+  if (v.length > 6) v = '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
+  else if (v.length > 2) v = '('+v.slice(0,2)+') '+v.slice(2);
+  el.value = v;
+}
+function maskCPF(el) {
+  let v = el.value.replace(/\D/g,'').slice(0,11);
+  if (v.length > 9) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6,9)+'-'+v.slice(9);
+  else if (v.length > 6) v = v.slice(0,3)+'.'+v.slice(3,6)+'.'+v.slice(6);
+  else if (v.length > 3) v = v.slice(0,3)+'.'+v.slice(3);
+  el.value = v;
+}
+function maskCard(el) {
+  let v = el.value.replace(/\D/g,'').slice(0,16);
+  v = v.match(/.{1,4}/g)?.join(' ') || v;
+  el.value = v;
+}
+function maskExp(el) {
+  let v = el.value.replace(/\D/g,'').slice(0,4);
+  if (v.length > 2) v = v.slice(0,2)+'/'+v.slice(2);
+  el.value = v;
+}
+ 
+document.addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(); });
+</script>
+</body>
+</html>
