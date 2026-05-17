@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2012739442985940');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Natureza da Realidade — Projeto Resonance</title>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1823603312223751');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1823603312223751&ev=PageView&noscript=1"/></noscript>
+<!-- End Facebook Pixel -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -36,11 +33,11 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     --dim: #8899BB;
     --accent: #1E3A5F;
   }
- 
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   html { scroll-behavior: smooth; }
- 
+
   body {
     background: var(--deep);
     color: var(--star);
@@ -48,7 +45,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     font-weight: 300;
     overflow-x: hidden;
   }
- 
+
   /* ── STAR CANVAS ── */
   #stars {
     position: fixed;
@@ -57,7 +54,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     z-index: 0;
     opacity: 0.6;
   }
- 
+
   /* ── NOISE OVERLAY ── */
   body::before {
     content: '';
@@ -68,7 +65,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     pointer-events: none;
     z-index: 0;
   }
- 
+
   /* ── LAYOUT ── */
   .wrap {
     position: relative;
@@ -77,7 +74,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     margin: 0 auto;
     padding: 0 24px;
   }
- 
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -89,7 +86,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     padding: 80px 24px 60px;
     position: relative;
   }
- 
+
   .hero::after {
     content: '';
     position: absolute;
@@ -97,7 +94,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     width: 1px; height: 80px;
     background: linear-gradient(to bottom, var(--gold), transparent);
   }
- 
+
   .eyebrow {
     font-family: 'Outfit', sans-serif;
     font-size: 11px;
@@ -109,7 +106,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     opacity: 0;
     animation: fadeUp 1s ease 0.3s forwards;
   }
- 
+
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(52px, 9vw, 88px);
@@ -121,12 +118,12 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     opacity: 0;
     animation: fadeUp 1s ease 0.5s forwards;
   }
- 
+
   .hero-title em {
     font-style: italic;
     color: var(--gold-light);
   }
- 
+
   .hero-subtitle {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(20px, 3vw, 26px);
@@ -137,7 +134,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     opacity: 0;
     animation: fadeUp 1s ease 0.7s forwards;
   }
- 
+
   .gold-line {
     width: 80px;
     height: 1px;
@@ -146,7 +143,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     opacity: 0;
     animation: fadeUp 1s ease 0.9s forwards;
   }
- 
+
   .hero-lead {
     font-size: 18px;
     line-height: 1.8;
@@ -156,26 +153,26 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     opacity: 0;
     animation: fadeUp 1s ease 1.1s forwards;
   }
- 
+
   /* ── SECTIONS ── */
   section {
     padding: 100px 0;
     position: relative;
     z-index: 1;
   }
- 
+
   .divider {
     width: 1px;
     height: 60px;
     background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
     margin: 0 auto;
   }
- 
+
   /* ── PRESENCE BLOCK ── */
   .presence {
     text-align: center;
   }
- 
+
   .presence-label {
     font-size: 11px;
     letter-spacing: 0.3em;
@@ -183,7 +180,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     color: var(--gold);
     margin-bottom: 32px;
   }
- 
+
   .presence h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(34px, 5vw, 52px);
@@ -191,12 +188,12 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     line-height: 1.2;
     margin-bottom: 40px;
   }
- 
+
   .presence h2 em {
     font-style: italic;
     color: var(--gold-light);
   }
- 
+
   .presence p {
     font-size: 17px;
     line-height: 1.9;
@@ -204,12 +201,12 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     max-width: 600px;
     margin: 0 auto 24px;
   }
- 
+
   .presence p strong {
     color: var(--star);
     font-weight: 400;
   }
- 
+
   /* ── QUOTE BLOCK ── */
   .quote-block {
     background: linear-gradient(135deg, rgba(14,28,50,0.6), rgba(8,17,31,0.8));
@@ -219,7 +216,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     margin: 60px 0;
     position: relative;
   }
- 
+
   .quote-block::before {
     content: '"';
     font-family: 'Cormorant Garamond', serif;
@@ -230,7 +227,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     top: -20px; left: 20px;
     line-height: 1;
   }
- 
+
   .quote-block p {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(20px, 3vw, 26px);
@@ -241,31 +238,31 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     position: relative;
     z-index: 1;
   }
- 
+
   /* ── MODULES ── */
   .modules-section {
     text-align: center;
   }
- 
+
   .modules-section h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(30px, 4vw, 44px);
     font-weight: 300;
     margin-bottom: 16px;
   }
- 
+
   .modules-section .sub {
     font-size: 15px;
     color: var(--dim);
     margin-bottom: 64px;
     letter-spacing: 0.05em;
   }
- 
+
   .modules-grid {
     display: grid;
     gap: 2px;
   }
- 
+
   .module-item {
     display: grid;
     grid-template-columns: 56px 1fr;
@@ -276,12 +273,12 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     transition: border-color 0.3s, background 0.3s;
     cursor: default;
   }
- 
+
   .module-item:hover {
     border-color: rgba(201,168,76,0.25);
     background: rgba(13,30,53,0.7);
   }
- 
+
   .module-num {
     display: flex;
     align-items: center;
@@ -294,11 +291,11 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     font-weight: 300;
     padding: 24px 0;
   }
- 
+
   .module-content {
     padding: 20px 24px;
   }
- 
+
   .module-content h3 {
     font-size: 14px;
     font-weight: 500;
@@ -307,37 +304,37 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     margin-bottom: 6px;
     text-transform: uppercase;
   }
- 
+
   .module-content p {
     font-size: 14px;
     line-height: 1.7;
     color: var(--dim);
   }
- 
+
   /* ── TRANSFORMATION ── */
   .transform-section {
     text-align: center;
   }
- 
+
   .transform-section h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(30px, 4vw, 44px);
     font-weight: 300;
     margin-bottom: 56px;
   }
- 
+
   .transform-section h2 em {
     font-style: italic;
     color: var(--gold-light);
   }
- 
+
   .pillars {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 24px;
     margin-bottom: 64px;
   }
- 
+
   .pillar {
     padding: 32px 20px;
     border: 1px solid rgba(201,168,76,0.12);
@@ -345,15 +342,15 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     text-align: center;
     transition: border-color 0.3s;
   }
- 
+
   .pillar:hover { border-color: rgba(201,168,76,0.35); }
- 
+
   .pillar-icon {
     font-size: 28px;
     margin-bottom: 16px;
     display: block;
   }
- 
+
   .pillar h4 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
@@ -361,18 +358,18 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     color: var(--gold-light);
     margin-bottom: 10px;
   }
- 
+
   .pillar p {
     font-size: 13px;
     line-height: 1.7;
     color: var(--dim);
   }
- 
+
   /* ── ABOUT ── */
   .about-section {
     text-align: center;
   }
- 
+
   .about-section h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(28px, 4vw, 40px);
@@ -381,7 +378,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     color: var(--gold-light);
     margin-bottom: 36px;
   }
- 
+
   .about-section p {
     font-size: 16px;
     line-height: 1.9;
@@ -389,17 +386,17 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     max-width: 580px;
     margin: 0 auto 20px;
   }
- 
+
   .about-section p strong {
     color: var(--star);
     font-weight: 400;
   }
- 
+
   /* ── OFFER ── */
   .offer-section {
     text-align: center;
   }
- 
+
   .offer-box {
     background: linear-gradient(160deg, rgba(14,28,50,0.9), rgba(5,10,20,0.95));
     border: 1px solid rgba(201,168,76,0.25);
@@ -409,7 +406,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     max-width: 520px;
     margin: 0 auto;
   }
- 
+
   .offer-box::before {
     content: '';
     position: absolute;
@@ -417,7 +414,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     height: 2px;
     background: linear-gradient(to right, transparent, var(--gold), transparent);
   }
- 
+
   .offer-box::after {
     content: '';
     position: absolute;
@@ -425,7 +422,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     height: 2px;
     background: linear-gradient(to right, transparent, var(--gold), transparent);
   }
- 
+
   .offer-label {
     font-size: 11px;
     letter-spacing: 0.3em;
@@ -433,7 +430,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     color: var(--gold);
     margin-bottom: 32px;
   }
- 
+
   .offer-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
@@ -441,7 +438,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     color: var(--star);
     margin-bottom: 8px;
   }
- 
+
   .offer-subtitle {
     font-family: 'Cormorant Garamond', serif;
     font-size: 16px;
@@ -449,11 +446,11 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     color: var(--dim);
     margin-bottom: 40px;
   }
- 
+
   .price-row {
     margin-bottom: 40px;
   }
- 
+
   .price-value {
     font-family: 'Cormorant Garamond', serif;
     font-size: 72px;
@@ -461,26 +458,26 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     color: var(--gold-light);
     line-height: 1;
   }
- 
+
   .price-value sup {
     font-size: 28px;
     vertical-align: super;
     color: var(--gold);
   }
- 
+
   .price-note {
     font-size: 13px;
     color: var(--dim);
     margin-top: 8px;
     letter-spacing: 0.05em;
   }
- 
+
   .offer-includes {
     list-style: none;
     margin-bottom: 40px;
     text-align: left;
   }
- 
+
   .offer-includes li {
     font-size: 14px;
     color: var(--dim);
@@ -490,7 +487,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     align-items: flex-start;
     gap: 12px;
   }
- 
+
   .offer-includes li::before {
     content: '✦';
     color: var(--gold);
@@ -498,7 +495,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     margin-top: 3px;
     flex-shrink: 0;
   }
- 
+
   .cta-btn {
     display: block;
     width: 100%;
@@ -517,29 +514,29 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     position: relative;
     overflow: hidden;
   }
- 
+
   .cta-btn:hover {
     opacity: 0.9;
     transform: translateY(-1px);
   }
- 
+
   .cta-btn::after {
     content: ' →';
   }
- 
+
   .secure-note {
     font-size: 12px;
     color: var(--dim);
     margin-top: 20px;
     opacity: 0.7;
   }
- 
+
   /* ── FINAL ── */
   .final-section {
     text-align: center;
     padding: 120px 0 80px;
   }
- 
+
   .final-section h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 52px);
@@ -547,12 +544,12 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     line-height: 1.3;
     margin-bottom: 32px;
   }
- 
+
   .final-section h2 em {
     font-style: italic;
     color: var(--gold-light);
   }
- 
+
   .final-section p {
     font-size: 16px;
     line-height: 1.9;
@@ -560,7 +557,7 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     max-width: 520px;
     margin: 0 auto 48px;
   }
- 
+
   /* ── FOOTER ── */
   footer {
     border-top: 1px solid rgba(201,168,76,0.1);
@@ -569,37 +566,37 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     position: relative;
     z-index: 1;
   }
- 
+
   footer p {
     font-size: 12px;
     color: var(--dim);
     opacity: 0.6;
     margin-bottom: 8px;
   }
- 
+
   footer a {
     color: var(--gold);
     text-decoration: none;
     font-size: 13px;
   }
- 
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
- 
+
   .reveal {
     opacity: 0;
     transform: translateY(32px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
- 
+
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
- 
+
   /* ── GLOW ── */
   .glow {
     position: absolute;
@@ -608,20 +605,20 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     filter: blur(80px);
     opacity: 0.08;
   }
- 
+
   .glow-1 {
     width: 500px; height: 500px;
     background: radial-gradient(circle, #1a4a8a, transparent);
     top: -100px; left: 50%; transform: translateX(-50%);
   }
- 
+
   .glow-2 {
     width: 400px; height: 400px;
     background: radial-gradient(circle, #C9A84C, transparent);
     top: 40%; right: -150px;
     opacity: 0.05;
   }
- 
+
   @media (max-width: 600px) {
     .offer-box { padding: 40px 24px; }
     .quote-block { padding: 28px 24px; }
@@ -630,9 +627,9 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
 </style>
 </head>
 <body>
- 
+
 <canvas id="stars"></canvas>
- 
+
 <!-- HERO -->
 <section class="hero">
   <div class="glow glow-1"></div>
@@ -646,9 +643,9 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     </p>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- PRESENCE -->
 <section class="presence">
   <div class="wrap">
@@ -660,25 +657,25 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     <p class="reveal">
       Quando esse entendimento chega, algo muda de forma permanente. Não é motivação. Não é técnica. É clareza. E clareza gera presença.
     </p>
- 
+
     <div class="quote-block reveal">
       <p>O conhecimento é o único bem que ninguém pode tirar de você. Ao alcançar o entendimento, você carrega uma leveza que não depende de circunstância alguma.</p>
     </div>
- 
+
     <p class="reveal">
       Este material foi escrito por alguém que não carrega títulos acadêmicos, mas que carrega anos de busca honesta. Uma tentativa de encapsular em palavras <strong>a experiência de compreender a natureza da realidade</strong>, desde os ensinamentos dos nossos ancestrais até o que a física quântica, a neurociência e a psicologia mais profunda já documentaram.
     </p>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- MODULES -->
 <section class="modules-section">
   <div class="wrap">
     <h2 class="reveal">Sete camadas de <em>entendimento</em></h2>
     <p class="sub reveal">Cada módulo é uma dimensão da mesma verdade</p>
- 
+
     <div class="modules-grid">
       <div class="module-item reveal">
         <div class="module-num">I</div>
@@ -732,14 +729,14 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- TRANSFORMATION -->
 <section class="transform-section">
   <div class="wrap">
     <h2 class="reveal">O que muda em quem <em>compreende</em></h2>
- 
+
     <div class="pillars">
       <div class="pillar reveal">
         <span class="pillar-icon">◈</span>
@@ -774,9 +771,9 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- ABOUT -->
 <section class="about-section">
   <div class="wrap">
@@ -792,9 +789,9 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     </p>
   </div>
 </section>
- 
+
 <div class="divider"></div>
- 
+
 <!-- OFFER -->
 <section class="offer-section">
   <div class="wrap">
@@ -802,12 +799,12 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
       <p class="offer-label">Acesso completo</p>
       <h3 class="offer-title">A Natureza da Realidade</h3>
       <p class="offer-subtitle">7 Módulos · Ebook em PDF</p>
- 
+
       <div class="price-row">
         <div class="price-value"><sup>R$</sup>89<sup>,90</sup></div>
         <p class="price-note">pagamento único · acesso imediato</p>
       </div>
- 
+
       <ul class="offer-includes">
         <li>7 módulos completos: do universo ao propósito individual</li>
         <li>Física quântica, neurociência e psicologia junguiana integradas</li>
@@ -815,13 +812,13 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
         <li>Linguagem acessível, profundidade real</li>
         <li>Download imediato em PDF · leitura em qualquer dispositivo</li>
       </ul>
- 
+
       <a href="/checkout.html" class="cta-btn">Quero o entendimento</a>
       <p class="secure-note">🔒 Pagamento seguro · Entrega imediata por e-mail</p>
     </div>
   </div>
 </section>
- 
+
 <!-- FINAL -->
 <section class="final-section">
   <div class="wrap">
@@ -832,22 +829,22 @@ src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
     <a href="/checkout.html" class="cta-btn reveal" style="max-width: 400px; margin: 0 auto;">Quero o entendimento</a>
   </div>
 </section>
- 
+
 <footer>
   <p>Projeto Resonance · Todos os direitos reservados</p>
   <a href="mailto:projetoresonance@gmail.com">projetoresonance@gmail.com</a>
 </footer>
- 
+
 <!-- STARS SCRIPT -->
 <script>
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
- 
+
 function resize() {
   canvas.width = window.innerWidth;
   canvas.height = document.body.scrollHeight;
 }
- 
+
 function drawStars() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const rng = mulberry32(42);
@@ -862,7 +859,7 @@ function drawStars() {
     ctx.fill();
   }
 }
- 
+
 function mulberry32(seed) {
   return function() {
     seed |= 0; seed = seed + 0x6D2B79F5 | 0;
@@ -871,11 +868,11 @@ function mulberry32(seed) {
     return ((t ^ t >>> 14) >>> 0) / 4294967296;
   };
 }
- 
+
 resize();
 drawStars();
 window.addEventListener('resize', () => { resize(); drawStars(); });
- 
+
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
@@ -886,7 +883,7 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.12 });
- 
+
 reveals.forEach(el => observer.observe(el));
 </script>
 </body>
