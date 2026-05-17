@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2012739442985940');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2012739442985940&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout — A Natureza da Realidade</title>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1823603312223751');
+fbq('track', 'PageView');
+fbq('track', 'InitiateCheckout', {
+  value: 89.90,
+  currency: 'BRL',
+  content_name: 'A Natureza da Realidade — 7 Módulos'
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1823603312223751&ev=PageView&noscript=1"/></noscript>
+<!-- End Facebook Pixel -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { min-height: 100%; }
- 
+
 body {
   font-family: 'Outfit', sans-serif;
   font-weight: 300;
@@ -35,7 +36,7 @@ body {
   overflow-x: hidden;
   position: relative;
 }
- 
+
 /* ── STAR CANVAS ── */
 #starfield {
   position: fixed;
@@ -43,7 +44,7 @@ body {
   z-index: 0;
   pointer-events: none;
 }
- 
+
 /* ── SAGE SILHOUETTES ── */
 .portraits {
   position: fixed;
@@ -51,7 +52,7 @@ body {
   z-index: 1;
   pointer-events: none;
 }
- 
+
 /* ── VIGNETTE over background ── */
 .vignette {
   position: fixed;
@@ -70,7 +71,7 @@ body {
       transparent 80%,
       rgba(5,8,14,0.75) 100%);
 }
- 
+
 /* ── LAYOUT ── */
 .page {
   position: relative;
@@ -79,7 +80,7 @@ body {
   display: flex;
   align-items: stretch;
 }
- 
+
 /* LEFT */
 .left-panel {
   width: 44%;
@@ -90,7 +91,7 @@ body {
   border-right: 1px solid rgba(201,168,76,0.12);
   position: relative;
 }
- 
+
 .left-panel::after {
   content: '';
   position: absolute;
@@ -98,7 +99,7 @@ body {
   width: 1px;
   background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.3), transparent);
 }
- 
+
 /* RIGHT */
 .right-panel {
   width: 56%;
@@ -108,7 +109,7 @@ body {
   justify-content: center;
   background: rgba(4,7,12,0.45);
 }
- 
+
 /* ── LEFT CONTENT ── */
 .eyebrow {
   display: flex;
@@ -118,7 +119,7 @@ body {
 }
 .ey-line { height: 1px; width: 36px; background: linear-gradient(to right, #C9A84C, transparent); }
 .ey-text { font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase; color: #C9A84C; }
- 
+
 .product-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(30px, 3vw, 48px);
@@ -128,7 +129,7 @@ body {
   margin-bottom: 6px;
 }
 .product-title em { font-style: italic; color: #E8D5A3; }
- 
+
 .product-sub {
   font-family: 'Cormorant Garamond', serif;
   font-size: 15px;
@@ -136,13 +137,13 @@ body {
   color: #8899BB;
   margin-bottom: 30px;
 }
- 
+
 .gold-rule {
   width: 44px; height: 1px;
   background: linear-gradient(to right, #C9A84C, transparent);
   margin-bottom: 28px;
 }
- 
+
 .modules { list-style: none; margin-bottom: 32px; }
 .modules li {
   display: flex;
@@ -163,7 +164,7 @@ body {
   min-width: 20px;
   opacity: 0.8;
 }
- 
+
 /* Price box */
 .price-box {
   background: rgba(8,12,20,0.75);
@@ -181,7 +182,7 @@ body {
   border-top: 1px solid rgba(255,255,255,0.05);
   font-size: 12px; color: #6a7f99;
 }
- 
+
 /* ── RIGHT CONTENT ── */
 .form-title {
   font-family: 'Cormorant Garamond', serif;
@@ -190,7 +191,7 @@ body {
   margin-bottom: 4px;
 }
 .form-desc { font-size: 13px; color: #6a7f99; margin-bottom: 28px; }
- 
+
 /* Fields */
 .field { margin-bottom: 16px; }
 .field label {
@@ -220,7 +221,7 @@ body {
   border-color: rgba(201,168,76,0.45);
   background: rgba(8,14,24,0.95);
 }
- 
+
 /* Payment */
 .pay-label { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #8899BB; margin-bottom: 10px; }
 .pay-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 20px; }
@@ -244,11 +245,11 @@ body {
   color: #FFFFFF;
 }
 .pay-tab .ticon { font-size: 18px; display: block; margin-bottom: 5px; }
- 
+
 /* Extra blocks */
 .extra { display: none; }
 .extra.show { display: block; }
- 
+
 .pix-info {
   background: rgba(201,168,76,0.06);
   border: 1px solid rgba(201,168,76,0.15);
@@ -261,13 +262,13 @@ body {
   display: none;
 }
 .pix-info.show { display: block; }
- 
+
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
- 
+
 /* Error */
 .err { font-size: 12px; color: #e07a5f; margin-bottom: 8px; display: none; }
 .err.show { display: block; }
- 
+
 /* CTA */
 .cta {
   width: 100%;
@@ -291,9 +292,9 @@ body {
 .cta:hover { background-position: 0% 0; transform: translateY(-1px); }
 .cta:active { transform: translateY(0); }
 .cta.loading { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
- 
+
 .cta-note { text-align: center; font-size: 11.5px; color: #4a5e72; letter-spacing: 0.04em; }
- 
+
 /* Footer quote */
 .foot-quote {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
@@ -306,7 +307,7 @@ body {
   font-size: 12px; font-style: italic;
   color: rgba(201,168,76,0.25); letter-spacing: 0.08em;
 }
- 
+
 /* Mobile */
 @media (max-width: 800px) {
   .page { flex-direction: column; }
@@ -318,10 +319,10 @@ body {
 </style>
 </head>
 <body>
- 
+
 <!-- STARFIELD CANVAS -->
 <canvas id="starfield"></canvas>
- 
+
 <!-- SAGE SILHOUETTES -->
 <div class="portraits">
   <!-- Gandhi left -->
@@ -350,11 +351,11 @@ body {
       <ellipse cx="130" cy="596" rx="15" ry="5"/>
     </g>
   </svg>
- 
+
   <!-- Jung right -->
   <svg style="position:absolute;right:0;top:0;width:20%;height:100%;opacity:0.08;" viewBox="0 0 200 700" preserveAspectRatio="xMidYMid meet">
     <defs>
-      <filter id="sj"><feGaussianBlur stdDeviation="2.5"/></filter>
+      <filter id="sj"><feGaussianBlur stdDeviation="2"/></filter>
       <linearGradient id="jg" x1="0%" y1="0%" x2="0%" y2="100%">
         <stop offset="0%" stop-color="#D4AF60" stop-opacity="1"/>
         <stop offset="70%" stop-color="#D4AF60" stop-opacity="0.6"/>
@@ -380,7 +381,7 @@ body {
       <ellipse cx="137" cy="600" rx="19" ry="6"/>
     </g>
   </svg>
- 
+
   <!-- Buddha top center -->
   <svg style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:12%;opacity:0.05;" viewBox="0 0 160 280" preserveAspectRatio="xMidYMid meet">
     <defs>
@@ -399,23 +400,23 @@ body {
     </g>
   </svg>
 </div>
- 
+
 <div class="vignette"></div>
- 
+
 <!-- PAGE -->
 <div class="page">
- 
+
   <!-- LEFT -->
   <div class="left-panel">
     <div class="eyebrow">
       <span class="ey-line"></span>
       <span class="ey-text">Acesso completo</span>
     </div>
- 
+
     <h1 class="product-title">A Natureza<br>da <em>Realidade</em></h1>
     <p class="product-sub">7 Módulos ao Entendimento</p>
     <div class="gold-rule"></div>
- 
+
     <ul class="modules">
       <li><span class="mod-n">I</span> O Universo que Habitamos</li>
       <li><span class="mod-n">II</span> Estrutura Quântica (Micro)</li>
@@ -425,7 +426,7 @@ body {
       <li><span class="mod-n">VI</span> Identidade e Propósito</li>
       <li><span class="mod-n">VII</span> Universo Holográfico</li>
     </ul>
- 
+
     <div class="price-box">
       <p class="price-lbl">Investimento único</p>
       <div class="price-val"><sup>R$</sup>89<sup>,90</sup></div>
@@ -436,12 +437,12 @@ body {
       </div>
     </div>
   </div>
- 
+
   <!-- RIGHT -->
   <div class="right-panel">
     <h2 class="form-title">Complete seu acesso</h2>
     <p class="form-desc">Preencha os dados abaixo para prosseguir com o pagamento</p>
- 
+
     <div class="field">
       <label>Nome completo</label>
       <input type="text" id="nome" placeholder="Seu nome completo" autocomplete="name">
@@ -454,7 +455,7 @@ body {
       <label>Telefone</label>
       <input type="tel" id="tel" placeholder="(11) 99999-9999" oninput="maskTel(this)">
     </div>
- 
+
     <p class="pay-label">Forma de pagamento</p>
     <div class="pay-tabs">
       <div class="pay-tab active" onclick="selectPay('pix',this)">
@@ -467,16 +468,16 @@ body {
         <span class="ticon">☰</span>Boleto
       </div>
     </div>
- 
+
     <div class="pix-info show" id="pix-info">
       Após confirmar, você será redirecionado para o ambiente seguro da PerfectPay onde o QR Code PIX será gerado instantaneamente.
     </div>
- 
+
     <div class="field extra show" id="cpf-block">
       <label>CPF</label>
       <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)">
     </div>
- 
+
     <div class="extra" id="card-block">
       <div class="field">
         <label>Número do cartão</label>
@@ -497,30 +498,30 @@ body {
         <input type="text" id="cardname" placeholder="Como aparece no cartão">
       </div>
     </div>
- 
+
     <div class="err" id="err"></div>
- 
+
     <button class="cta" id="cta-btn" onclick="handleSubmit()">
       Garantir meu acesso →
     </button>
     <p class="cta-note">🔒 &nbsp;Pagamento 100% seguro · Dados criptografados</p>
   </div>
 </div>
- 
+
 <div class="foot-quote">
   <p>"O conhecimento é o único bem que ninguém pode tirar de você."</p>
 </div>
- 
+
 <script>
 // ── STARFIELD ──
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
- 
+
 function resize() {
   canvas.width  = window.innerWidth;
   canvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
 }
- 
+
 function rng(seed) {
   // simple deterministic rng
   return function() {
@@ -528,15 +529,15 @@ function rng(seed) {
     return (seed - 1) / 2147483646;
   };
 }
- 
+
 function drawStars() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const rand = rng(1337);
- 
+
   // Deep blue-black background
   ctx.fillStyle = '#080b10';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
- 
+
   // Subtle golden nebula glow
   const grd = ctx.createRadialGradient(
     canvas.width * 0.5, canvas.height * 0.45, 0,
@@ -547,20 +548,20 @@ function drawStars() {
   grd.addColorStop(1, 'transparent');
   ctx.fillStyle = grd;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
- 
+
   // Side glows (where sages stand)
   const glowL = ctx.createRadialGradient(0, canvas.height * 0.4, 0, 0, canvas.height * 0.4, canvas.width * 0.22);
   glowL.addColorStop(0, 'rgba(180,130,40,0.07)');
   glowL.addColorStop(1, 'transparent');
   ctx.fillStyle = glowL;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
- 
+
   const glowR = ctx.createRadialGradient(canvas.width, canvas.height * 0.4, 0, canvas.width, canvas.height * 0.4, canvas.width * 0.22);
   glowR.addColorStop(0, 'rgba(180,130,40,0.07)');
   glowR.addColorStop(1, 'transparent');
   ctx.fillStyle = glowR;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
- 
+
   // Stars — mostly white/blue-white, few golden
   for (let i = 0; i < 280; i++) {
     const x = rand() * canvas.width;
@@ -577,7 +578,7 @@ function drawStars() {
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fill();
   }
- 
+
   // Constellation lines — subtle
   const pts = [
     [0.08, 0.12], [0.14, 0.20], [0.10, 0.30], [0.16, 0.38],
@@ -600,19 +601,19 @@ function drawStars() {
     ctx.stroke();
   }
 }
- 
+
 resize(); drawStars();
 window.addEventListener('resize', () => { resize(); drawStars(); });
- 
+
 // ── PAYMENT ──
 let payMethod = 'pix';
- 
+
 const LINKS = {
   pix:    'https://go.perfectpay.com.br/PPU38CQC17R',
   boleto: 'https://go.perfectpay.com.br/PPU38CQC17R',
   cartao: 'https://go.perfectpay.com.br/PPU38CQC17Q'
 };
- 
+
 function selectPay(method, el) {
   payMethod = method;
   document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
@@ -629,14 +630,14 @@ function selectPay(method, el) {
     document.getElementById('card-block').classList.add('show');
   }
 }
- 
+
 function handleSubmit() {
   const nome  = document.getElementById('nome').value.trim();
   const email = document.getElementById('email').value.trim();
   const tel   = document.getElementById('tel').value.trim();
   const err   = document.getElementById('err');
   const btn   = document.getElementById('cta-btn');
- 
+
   if (!nome || !email || !tel) {
     err.classList.add('show');
     err.textContent = 'Por favor, preencha nome, e-mail e telefone.';
@@ -647,15 +648,15 @@ function handleSubmit() {
     err.textContent = 'Por favor, insira um e-mail válido.';
     return;
   }
- 
+
   err.classList.remove('show');
   btn.classList.add('loading');
   btn.textContent = 'Redirecionando...';
- 
+
   const params = new URLSearchParams({ name: nome, email, phone: tel.replace(/\D/g,'') });
   setTimeout(() => { window.location.href = LINKS[payMethod] + '?' + params.toString(); }, 700);
 }
- 
+
 function maskTel(el) {
   let v = el.value.replace(/\D/g,'').slice(0,11);
   if (v.length > 6) v = '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
@@ -679,7 +680,7 @@ function maskExp(el) {
   if (v.length > 2) v = v.slice(0,2)+'/'+v.slice(2);
   el.value = v;
 }
- 
+
 document.addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(); });
 </script>
 </body>
