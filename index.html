@@ -14,6 +14,16 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1823603312223751');
 fbq('track', 'PageView');
+
+// ViewContent — dispara após 15s na página (perfil qualificado para o pixel estudar)
+setTimeout(function() {
+  fbq('track', 'ViewContent', {
+    content_name: 'A Natureza da Realidade — 7 Módulos',
+    content_category: 'Espiritualidade / Consciência',
+    value: 89.90,
+    currency: 'BRL'
+  });
+}, 15000);
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1823603312223751&ev=PageView&noscript=1"/></noscript>
