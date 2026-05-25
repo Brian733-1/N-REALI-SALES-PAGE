@@ -15,7 +15,6 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1823603312223751');
 fbq('track', 'PageView');
 
-// ViewContent — dispara após 15s na página (perfil qualificado para o pixel estudar)
 setTimeout(function() {
   fbq('track', 'ViewContent', {
     content_name: 'A Natureza da Realidade — 7 Módulos',
@@ -56,9 +55,9 @@ body {
   position: relative; z-index: 1;
   max-width: 720px; margin: 0 auto; padding: 0 24px;
 }
-section { padding: 80px 0; position: relative; z-index: 1; }
+section { padding: 60px 0; position: relative; z-index: 1; }
 .divider {
-  width: 1px; height: 50px;
+  width: 1px; height: 40px;
   background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
   margin: 0 auto;
 }
@@ -83,7 +82,6 @@ section { padding: 80px 0; position: relative; z-index: 1; }
   pointer-events: all;
 }
 
-/* Eye SVG wrapper */
 .eye-wrap {
   position: relative;
   width: 64px;
@@ -96,7 +94,6 @@ section { padding: 80px 0; position: relative; z-index: 1; }
   filter: drop-shadow(0 0 14px rgba(80,160,255,0.8)) drop-shadow(0 0 28px rgba(80,140,220,0.5));
 }
 
-/* Light trail descending from eye */
 .eye-trail {
   position: absolute;
   top: 100%;
@@ -112,7 +109,6 @@ section { padding: 80px 0; position: relative; z-index: 1; }
   animation: trail-pulse 3s ease-in-out infinite;
 }
 
-/* Particle on trail */
 .eye-trail::after {
   content: '';
   position: absolute;
@@ -469,19 +465,80 @@ section { padding: 80px 0; position: relative; z-index: 1; }
   margin-top: 18px; opacity: 0.65;
 }
 
-/* ── FINAL ── */
-.final-section { text-align: center; padding: 100px 0 70px; }
-.final-section h2 {
+/* ── TESTIMONIALS ── */
+.testimonials { padding: 60px 0 40px; text-align: center; }
+.testimonials h2 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(30px, 5vw, 50px);
-  font-weight: 300; line-height: 1.25; margin-bottom: 28px;
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 300; color: var(--gold-light);
+  margin-bottom: 48px; letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
-.final-section h2 em { font-style: italic; color: var(--gold-light); }
-.final-section p {
-  font-size: 15px; line-height: 1.9;
-  color: var(--dim); max-width: 500px;
-  margin: 0 auto 44px;
+.testi-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px; margin-bottom: 40px;
 }
+.testi-card {
+  background: rgba(13,30,53,0.4);
+  border: 1px solid rgba(201,168,76,0.1);
+  padding: 28px 24px; text-align: left;
+  transition: border-color 0.3s;
+}
+.testi-card:hover { border-color: rgba(201,168,76,0.25); }
+.testi-stars { color: var(--gold); font-size: 13px; margin-bottom: 12px; letter-spacing: 0.1em; }
+.testi-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-style: italic;
+  line-height: 1.7; color: var(--gold-light);
+  margin-bottom: 16px;
+}
+.testi-author {
+  display: flex; align-items: center; gap: 10px;
+}
+.testi-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dim), var(--accent, #1E3A5F));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--gold-light); font-weight: 500;
+  flex-shrink: 0;
+}
+.testi-name { font-size: 12px; color: var(--dim); letter-spacing: 0.06em; }
+.testi-role { font-size: 10px; color: var(--gold-dim); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ── FAQ ── */
+.faq { padding: 40px 0 60px; }
+.faq h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 300; color: var(--gold-light);
+  margin-bottom: 40px; text-align: center;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  overflow: hidden;
+}
+.faq-q {
+  width: 100%; text-align: left;
+  padding: 20px 0; background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 400;
+  color: var(--star); letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--gold-light); }
+.faq-icon {
+  font-size: 20px; color: var(--gold);
+  transition: transform 0.3s; flex-shrink: 0;
+  font-style: normal;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+  font-size: 14px; line-height: 1.8; color: var(--dim);
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 20px; }
 
 /* ── FOOTER ── */
 footer {
@@ -489,8 +546,8 @@ footer {
   padding: 36px 24px; text-align: center;
   position: relative; z-index: 1;
 }
-footer p { font-size: 11px; color: var(--dim); opacity: 0.5; margin-bottom: 6px; }
-footer a { color: var(--gold); text-decoration: none; font-size: 12px; }
+footer p { font-size: 11px; color: var(--dim); opacity: 0.5; }
+footer a { color: var(--gold); text-decoration: none; }
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp {
@@ -510,8 +567,8 @@ footer a { color: var(--gold); text-decoration: none; font-size: 12px; }
   .checks { grid-template-columns: 1fr; }
   .pillars { grid-template-columns: 1fr 1fr; }
   #float-btn { right: 12px; }
-  .float-orb { width: 44px; height: 44px; }
-  .float-label { font-size: 8px; max-width: 48px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  section { padding: 40px 0; }
 }
 </style>
 </head>
@@ -522,19 +579,16 @@ footer a { color: var(--gold); text-decoration: none; font-size: 12px; }
 <!-- FLOATING EYE BUTTON -->
 <div id="float-btn" onclick="scrollToOffer()">
   <div class="eye-wrap">
-    <!-- Mosaic eye SVG -->
     <svg viewBox="0 0 64 36" xmlns="http://www.w3.org/2000/svg" width="64" height="36">
       <defs>
         <clipPath id="eye-clip">
           <path d="M32 2 Q58 18 32 34 Q6 18 32 2Z"/>
         </clipPath>
-        <!-- Copper outline gradient -->
         <linearGradient id="copper" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#B87333"/>
           <stop offset="50%" stop-color="#E8B464"/>
           <stop offset="100%" stop-color="#B87333"/>
         </linearGradient>
-        <!-- Iris glow -->
         <radialGradient id="iris-glow" cx="50%" cy="45%" r="50%">
           <stop offset="0%" stop-color="#1a3a6a"/>
           <stop offset="40%" stop-color="#0a2050"/>
@@ -545,34 +599,23 @@ footer a { color: var(--gold); text-decoration: none; font-size: 12px; }
           <stop offset="100%" stop-color="#000010"/>
         </radialGradient>
       </defs>
-
-      <!-- Outer copper frame -->
       <path d="M32 1 Q60 18 32 35 Q4 18 32 1Z"
         fill="none" stroke="url(#copper)" stroke-width="1.8"/>
-
-      <!-- Mosaic tiles — outer ring (whites/light blues) -->
       <g clip-path="url(#eye-clip)">
-        <!-- White sclera tiles left -->
         <rect x="6"  y="14" width="5" height="5" rx="0.4" fill="#ddeeff" opacity="0.9"/>
         <rect x="10" y="10" width="5" height="5" rx="0.4" fill="#cce0f5" opacity="0.9"/>
         <rect x="10" y="19" width="5" height="5" rx="0.4" fill="#ddeeff" opacity="0.85"/>
         <rect x="14" y="7"  width="5" height="5" rx="0.4" fill="#e8f2ff" opacity="0.9"/>
         <rect x="14" y="24" width="5" height="5" rx="0.4" fill="#cce0f5" opacity="0.85"/>
-
-        <!-- White sclera tiles right -->
         <rect x="53" y="14" width="5" height="5" rx="0.4" fill="#ddeeff" opacity="0.9"/>
         <rect x="49" y="10" width="5" height="5" rx="0.4" fill="#cce0f5" opacity="0.9"/>
         <rect x="49" y="19" width="5" height="5" rx="0.4" fill="#ddeeff" opacity="0.85"/>
         <rect x="45" y="7"  width="5" height="5" rx="0.4" fill="#e8f2ff" opacity="0.9"/>
         <rect x="45" y="24" width="5" height="5" rx="0.4" fill="#cce0f5" opacity="0.85"/>
-
-        <!-- Iris outer ring tiles — medium blue -->
         <rect x="19" y="5"  width="5" height="5" rx="0.4" fill="#2255aa"/>
         <rect x="19" y="26" width="5" height="5" rx="0.4" fill="#1a4499"/>
         <rect x="40" y="5"  width="5" height="5" rx="0.4" fill="#2255aa"/>
         <rect x="40" y="26" width="5" height="5" rx="0.4" fill="#1a4499"/>
-
-        <!-- Iris ring — teal/cyan tiles -->
         <rect x="20" y="11" width="5" height="5" rx="0.4" fill="#1a88bb"/>
         <rect x="20" y="20" width="5" height="5" rx="0.4" fill="#1a77aa"/>
         <rect x="39" y="11" width="5" height="5" rx="0.4" fill="#1a88bb"/>
@@ -581,24 +624,16 @@ footer a { color: var(--gold); text-decoration: none; font-size: 12px; }
         <rect x="34" y="6"  width="5" height="5" rx="0.4" fill="#22aacc"/>
         <rect x="25" y="25" width="5" height="5" rx="0.4" fill="#1a99bb"/>
         <rect x="34" y="25" width="5" height="5" rx="0.4" fill="#1a99bb"/>
-
-        <!-- Iris inner ring — deep blue -->
         <rect x="25" y="12" width="5" height="5" rx="0.4" fill="#0a3388"/>
         <rect x="34" y="12" width="5" height="5" rx="0.4" fill="#0a3388"/>
         <rect x="25" y="20" width="5" height="5" rx="0.4" fill="#0a2a77"/>
         <rect x="34" y="20" width="5" height="5" rx="0.4" fill="#0a2a77"/>
         <rect x="20" y="16" width="5" height="5" rx="0.4" fill="#0d3a99"/>
         <rect x="39" y="16" width="5" height="5" rx="0.4" fill="#0d3a99"/>
-
-        <!-- Pupil — dark tiles -->
         <rect x="28" y="12" width="8" height="5" rx="0.5" fill="#050a18"/>
         <rect x="28" y="20" width="8" height="4" rx="0.5" fill="#050a18"/>
         <rect x="27" y="16" width="10" height="5" rx="0.5" fill="#020610"/>
-
-        <!-- Highlight on pupil -->
         <ellipse cx="32" cy="15" rx="2" ry="1.5" fill="rgba(200,230,255,0.35)"/>
-
-        <!-- Grout lines (dark gaps between tiles) -->
         <rect x="6"  y="13" width="58" height="0.5" fill="#03060F" opacity="0.6"/>
         <rect x="6"  y="18" width="58" height="0.5" fill="#03060F" opacity="0.6"/>
         <rect x="6"  y="23" width="58" height="0.5" fill="#03060F" opacity="0.5"/>
@@ -615,11 +650,8 @@ footer a { color: var(--gold); text-decoration: none; font-size: 12px; }
         <rect x="49" y="3"  height="30" width="0.5" fill="#03060F" opacity="0.4"/>
         <rect x="54" y="3"  height="30" width="0.5" fill="#03060F" opacity="0.4"/>
       </g>
-
-      <!-- Outer copper border on top -->
       <path d="M32 2 Q58 18 32 34 Q6 18 32 2Z"
         fill="none" stroke="url(#copper)" stroke-width="1.4" opacity="0.9"/>
-      <!-- Corner accent dots -->
       <circle cx="5"  cy="18" r="1.5" fill="#E8B464" opacity="0.8"/>
       <circle cx="59" cy="18" r="1.5" fill="#E8B464" opacity="0.8"/>
       <circle cx="32" cy="2"  r="1.2" fill="#E8B464" opacity="0.7"/>
@@ -633,13 +665,13 @@ footer a { color: var(--gold); text-decoration: none; font-size: 12px; }
 <section class="hero">
   <div class="wrap">
     <div class="hero-badge">Conhecimento oculto · Acesso único</div>
-    <h1 class="hero-title">Alcance o Entendimento<br>de um <em>Sábio Mago<br>da Realidade</em></h1>
+    <h1 class="hero-title">Alcance o Entendimento<br>de um <em>Sábio</em></h1>
     <p class="hero-subtitle">Essas informações não aparecem duas vezes.</p>
     <div class="gold-line"></div>
     <p class="hero-lead">
       Existe um código por trás da realidade. Poucos o conhecem. Menos ainda sabem viver a partir dele. O que você está prestes a ler muda isso para sempre.
     </p>
-    <a class="hero-cta" onclick="scrollToOffer()">Quero o entendimento →</a>
+    <a class="hero-cta" href="https://pay.kiwify.com.br/xhbFdoH" target="_blank">Quero o entendimento →</a>
   </div>
 </section>
 
@@ -820,7 +852,7 @@ footer a { color: var(--gold); text-decoration: none; font-size: 12px; }
       <div class="pillar reveal">
         <span class="pillar-icon">◈</span>
         <h4>Harmonia</h4>
-        <p>Com a natureza, com o próximo, consigo mesmo. A consequência de viver alinhado com o que é verdadeiro.</p>
+        <p>Com a natureza, com o próximo, consigo mesmo. A consequência de viver ali onde a verdade habita.</p>
       </div>
     </div>
   </div>
@@ -864,20 +896,95 @@ footer a { color: var(--gold); text-decoration: none; font-size: 12px; }
         <li>Linguagem acessível, profundidade real e rara</li>
         <li>Download imediato em PDF · leitura em qualquer dispositivo</li>
       </ul>
-      <a href="/checkout.html" class="cta-btn">Quero o entendimento</a>
+      <a href="https://pay.kiwify.com.br/xhbFdoH" class="cta-btn" target="_blank">Quero o entendimento</a>
       <p class="secure-note">🔒 Pagamento seguro · Entrega imediata por e-mail</p>
     </div>
   </div>
 </section>
 
-<!-- FINAL -->
-<section class="final-section">
+<div class="divider"></div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
   <div class="wrap">
-    <h2 class="reveal">O entendimento é o único bem<br>que ninguém pode <em>te tirar.</em></h2>
-    <p class="reveal">
-      Tudo o mais pode mudar. O que você compreende de verdade fica. Para sempre. E muda a forma como você vive cada dia a partir de agora.
-    </p>
-    <a href="/checkout.html" class="cta-btn reveal" style="max-width: 400px; margin: 0 auto; display: block;">Quero o entendimento</a>
+    <h2 class="reveal">O que dizem quem já acessou</h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Conteúdo muito completo e com uma didática simples. Abordou temas complexos de forma reflexiva sem apelar para dogmas. O que torna o conteúdo neutro e imparcial."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div><div class="testi-name">Marcos Oliveira</div><div class="testi-role">Cliente</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Não tenho costume de ler mas esse conteúdo me fez entender assuntos complexos de forma simples. Me fez entender melhor o que está à minha volta."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div><div class="testi-name">Sarah Alencar</div><div class="testi-role">Cliente</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Me senti como em uma conversa com o autor. Recebi informações que me ajudaram a ter uma nova visão sobre aspectos que limitavam minha consciência."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">J</div>
+          <div><div class="testi-name">Jorge Felipe</div><div class="testi-role">Cliente</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Me ajudou muito no processo de despertar espiritual. Consegui compreender temas complexos com facilidade. Parece uma conversa direta comigo."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div><div class="testi-name">Pedro Souza</div><div class="testi-role">Cliente</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="reveal">Perguntas frequentes</h2>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Qual a garantia do produto? <i class="faq-icon">+</i>
+      </button>
+      <div class="faq-a">Este produto possui garantia de 7 dias que possibilita uma compra segura e confiável. Se não ficar satisfeito por qualquer motivo, basta solicitar o reembolso dentro do prazo e devolveremos 100% do valor pago.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Como funciona a entrega? <i class="faq-icon">+</i>
+      </button>
+      <div class="faq-a">Após o pagamento confirmado, o acesso ao material é enviado imediatamente para o e-mail cadastrado no momento da compra. Isso ocorre de forma automática e instantânea, 24 horas por dia.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Preciso ter conhecimento prévio sobre o tema? <i class="faq-icon">+</i>
+      </button>
+      <div class="faq-a">Não. O material foi escrito para ser compreendido por qualquer pessoa com mente aberta, independente de formação acadêmica ou conhecimento prévio sobre física quântica, psicologia ou espiritualidade.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Por quanto tempo terei acesso? <i class="faq-icon">+</i>
+      </button>
+      <div class="faq-a">O acesso é vitalício. Após o pagamento o arquivo é seu para sempre. Pode baixar, salvar e ler quando quiser, em qualquer dispositivo.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Por que devo adquirir esse conteúdo? <i class="faq-icon">+</i>
+      </button>
+      <div class="faq-a">Você está 100% satisfeito com a forma como compreende a realidade ao seu redor? Se a resposta for não, esse é o motivo. O entendimento é o único bem que ninguém pode tirar de você.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Qual o suporte disponível? <i class="faq-icon">+</i>
+      </button>
+      <div class="faq-a">Qualquer dúvida pode ser enviada para projetoresonance@gmail.com. Respondemos em até 24 horas úteis.</div>
+    </div>
   </div>
 </section>
 
@@ -925,6 +1032,12 @@ setTimeout(() => {
 
 function scrollToOffer() {
   document.getElementById('oferta').scrollIntoView({ behavior: 'smooth' });
+}
+
+// FAQ TOGGLE
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
 }
 
 // REVEAL
