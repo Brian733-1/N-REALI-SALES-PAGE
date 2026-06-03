@@ -85,6 +85,25 @@ section { padding: 60px 0; position: relative; z-index: 1; }
   margin: 0 auto;
 }
 
+/* ── GUARANTEE BAR ── */
+.guarantee-bar {
+  background: linear-gradient(to right, var(--gold-dim), var(--gold), var(--gold-dim));
+  color: var(--deep);
+  text-align: center;
+  padding: 10px 24px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+@media (max-width: 600px) {
+  .guarantee-bar { font-size: 9px; padding: 8px 12px; line-height: 1.4; }
+}
+
 /* ── FLOATING EYE BUTTON ── */
 #float-btn {
   position: fixed;
@@ -160,16 +179,16 @@ section { padding: 60px 0; position: relative; z-index: 1; }
 
 /* ── HERO ── */
 .hero {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center;
-  padding: 80px 24px 60px;
+  padding: 60px 24px 60px;
   position: relative;
 }
 .hero::after {
   content: '';
-  position: absolute bottom: 0; left: 50%; transform: translateX(-50%);
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
   width: 1px; height: 70px;
   background: linear-gradient(to bottom, var(--gold), transparent);
 }
@@ -416,7 +435,7 @@ section { padding: 60px 0; position: relative; z-index: 1; }
 .about-section p strong { color: var(--star); font-weight: 400; }
 
 /* ── OFFER ── */
-#oferta { scroll-margin-top: 40px; }
+#oferta { scroll-margin-top: 80px; }
 .offer-section { text-align: center; }
 .offer-box {
   background: linear-gradient(160deg, rgba(14,28,50,0.92), rgba(5,10,20,0.97));
@@ -470,6 +489,32 @@ section { padding: 60px 0; position: relative; z-index: 1; }
   content: '✦'; color: var(--gold);
   font-size: 9px; margin-top: 4px; flex-shrink: 0;
 }
+
+/* ── TRUST & KIWIFY ── */
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+.trust-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.badge-icon {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 18px;
+}
+.badge-text {
+  font-size: 9px; color: var(--gold-light);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
 .cta-btn {
   display: block; width: 100%;
   padding: 19px 32px;
@@ -483,6 +528,20 @@ section { padding: 60px 0; position: relative; z-index: 1; }
 }
 .cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 .cta-btn::after { content: ' →'; }
+
+.kiwify-trust {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 4px;
+}
+.kiwify-trust span { font-size: 11px; color: var(--dim); }
+.kiwify-trust strong { color: var(--gold-light); font-weight: 500; }
+
 .secure-note {
   font-size: 11.5px; color: var(--dim);
   margin-top: 18px; opacity: 0.65;
@@ -593,6 +652,10 @@ footer a { color: var(--gold); text-decoration: none; }
 </head>
 <body>
 
+<div class="guarantee-bar">
+  ✦ Garantia de Transformação (20 Dias) ou Reembolso a qualquer momento (7 Dias) via Kiwify ✦
+</div>
+
 <canvas id="stars"></canvas>
 
 <!-- FLOATING EYE BUTTON -->
@@ -690,7 +753,7 @@ footer a { color: var(--gold); text-decoration: none; }
     <p class="hero-lead">
       Existe um código por trás da realidade. Poucos o conhecem. Menos ainda sabem viver a partir dele. O que você está prestes a ler muda isso para sempre.
     </p>
-    <a class="hero-cta" href="https://pay.kiwify.com.br/xhbFdoH" target="_blank">Quero o entendimento →</a>
+    <a class="hero-cta" href="#oferta">Quero o entendimento →</a>
   </div>
 </section>
 
@@ -807,8 +870,8 @@ footer a { color: var(--gold); text-decoration: none; }
       <div class="module-item reveal">
         <div class="module-num">IV</div>
         <div class="module-content">
-          <h3>Espiritualidade</h3>
-          <p>Além das religiões. O campo vibrante que coexiste com o físico. O medo como impeditivo. O desapego como portal para a presença real.</p>
+          <h3>Espiritualidade Universal</h3>
+          <p>A sabedoria milenar decodificada. O que os grandes mestres e tradições sempre souberam, livre de dogmas e pronto para ser vivido.</p>
         </div>
       </div>
       <div class="module-item reveal">
@@ -829,7 +892,7 @@ footer a { color: var(--gold); text-decoration: none; }
         <div class="module-num">VII</div>
         <div class="module-content">
           <h3>Universo Holográfico</h3>
-          <p>A teoria holográfica, Einstein, a comunicação não local. E a possibilidade de que essa experiência seja muito mais do que parece.</p>
+          <p>A teoria holográfica, Einstein, a comunicação não local. E a possibilidade de que essa experiênca seja muito mais do que parece.</p>
         </div>
       </div>
     </div>
@@ -915,8 +978,28 @@ footer a { color: var(--gold); text-decoration: none; }
         <li>Linguagem acessível, profundidade real e rara</li>
         <li>Download imediato em PDF · leitura em qualquer dispositivo</li>
       </ul>
+
+      <!-- TRUST BADGES -->
+      <div class="trust-badges">
+        <div class="trust-badge">
+          <div class="badge-icon">🛡️</div>
+          <span class="badge-text">Garantia 20 Dias</span>
+        </div>
+        <div class="trust-badge">
+          <div class="badge-icon">🔄</div>
+          <span class="badge-text">Reembolso Auto</span>
+        </div>
+        <div class="trust-badge">
+          <div class="badge-icon">🔒</div>
+          <span class="badge-text">Compra Segura</span>
+        </div>
+      </div>
+
       <a href="https://pay.kiwify.com.br/xhbFdoH" class="cta-btn" target="_blank">Quero o entendimento</a>
-      <p class="secure-note">🔒 Pagamento seguro · Entrega imediata por e-mail</p>
+      
+
+
+      <p class="secure-note">Reembolso automático em 7 dias se solicitado pelo cliente.</p>
     </div>
   </div>
 </section>
@@ -972,7 +1055,7 @@ footer a { color: var(--gold); text-decoration: none; }
       <button class="faq-q" onclick="toggleFaq(this)">
         Qual a garantia do produto? <i class="faq-icon">+</i>
       </button>
-      <div class="faq-a">Este produto possui garantia de 7 dias que possibilita uma compra segura e confiável. Se não ficar satisfeito por qualquer motivo, basta solicitar o reembolso dentro do prazo e devolveremos 100% do valor pago.</div>
+      <div class="faq-a">Oferecemos uma <strong>Garantia Dupla</strong>: 1) Você tem 7 dias para solicitar o reembolso automático diretamente pela plataforma Kiwify caso sinta que o material não é para você. 2) Eu garanto uma transformação real em 20 dias; se você aplicar o conhecimento e não houver mudança, eu devolvo 100% do seu dinheiro.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
